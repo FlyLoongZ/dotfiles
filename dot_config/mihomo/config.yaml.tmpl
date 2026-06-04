@@ -241,13 +241,6 @@ proxies:
         reality-opts:
           public-key: ""
 
-proxytest: &proxytest
-  url: https://www.gstatic.com/generate_204
-  interval: 0
-  timeout: 2000
-  max-failed-times: 5
-  expected-status: 204
-
 # 代理组
 proxy-groups:
   - name: mainproxy
@@ -280,48 +273,41 @@ proxy-groups:
   - name: 美国
     type: select
     filter: "(?i)美国|us|unitedstates|united states"
-    <<: *proxytest
     use:
       - daili
 
   - name: 日本
     type: select
     filter: "(?i)日本|jp|japan"
-    <<: *proxytest
     use:
      - daili
 
   - name: 新加坡
     type: select
     filter: "(?i)(新加坡|sg|singapore)"
-    <<: *proxytest
     use:
       - daili
 
   - name: 香港
     type: select
     filter: "(?i)香港|hk|hongkong|hong kong"
-    <<: *proxytest
     use:
       - daili
 
   - name: 台湾
     type: select
     filter: "(?i)台湾|tw|taiwan"
-    <<: *proxytest
     use:
       - daili
 
   - name: 其它地区
     type: select
     filter: "(?i)^(?!.*(?:🇭🇰|🇯🇵|🇺🇸|🇸🇬|🇨🇳|香港|hk|hongkong|台湾|tw|taiwan|日本|jp|japan|新加坡|sg|singapore|美国|us|unitedstates)).*"
-    <<: *proxytest
     use:
       - daili
 
   - name: 全部节点
     type: select
-    <<: *proxytest
     use:
      - daili
 
