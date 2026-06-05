@@ -135,7 +135,7 @@ xhttp_opt: &xhttp_opt
   x-padding-method: tokenish
   x-padding-header: X-Auth-Token
   path: {{ .xhttp_path }}
-  mode: auto
+  mode: stream-up
   reuse-settings:
     max-connections: 1
     c-max-reuse-times: 0
@@ -178,25 +178,25 @@ proxies:
 
   - name: xhttp-h3
     <<: *xhttp_proxies
-    alpn: [h3]
     server: {{ .xhttp_server }}
     servername: {{ .xhttp1_server }}
     xhttp-opts:
       <<: *xhttp_opt
       download-settings:
         <<: *xmux_down
+        alpn: [h3]
         server: {{ .xhttp_server2 }}
         servername: {{ .xhttp1_server }}
 
   - name: xhttp-h3-2
     <<: *xhttp_proxies
-    alpn: [h3]
     server: {{ .xhttp_server2 }}
     servername: {{ .xhttp2_server }}
     xhttp-opts:
       <<: *xhttp_opt
       download-settings:
         <<: *xmux_down
+        alpn: [h3]
         server: {{ .xhttp_server }}
         servername: {{ .xhttp2_server }}
 
