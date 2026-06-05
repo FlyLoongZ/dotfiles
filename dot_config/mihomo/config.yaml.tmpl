@@ -52,14 +52,17 @@ dns:
   direct-nameserver:
     - *localdns
   nameserver:
-    - https://1.1.1.1/dns-query
-    - https://8.8.8.8/dns-query
+    - *localdns
   nameserver-policy:
-    "rule-set:icp":
-      - *localdns
     "geosite:geolocation-!cn":
       - https://1.1.1.1/dns-query
       - https://8.8.8.8/dns-query
+  fallback:
+    - https://1.1.1.1/dns-query
+    - https://8.8.8.8/dns-query
+  fallback-filter:
+    geoip: true
+    geoip-code: CN
 
 tun:
   enable: false
@@ -173,7 +176,7 @@ proxies:
       <<: *xhttp_opt
       download-settings:
         <<: *xmux_down
-        server: {{ .xhttp1_server }}
+        server: {{ .xhttp2_server }}
         servername: {{ .xhttp1_server }}
 
   - name: xhttp-h3
@@ -344,5 +347,6 @@ rules:
   - GEOIP,private,DIRECT
   # 国内
   - RULE-SET,ip-cn,DIRECT
+  - GEOIP,CN,DIRECT
   # 国外
   - MATCH,mainproxy
