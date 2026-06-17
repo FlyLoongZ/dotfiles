@@ -1,8 +1,8 @@
 {
   "providers": {
     "OpenAI": {
-      "baseUrl": {{ .ai_baseurl }},
-      "apiKey": {{ .ai_apikey }},
+      "baseUrl": "{{ .ai_baseurl }}/v1",
+      "apiKey": "{{ .ai_apikey }}",
       "api": "openai-responses",
       "models": [
         {
@@ -42,8 +42,8 @@
       ]
     },
     "Google": {
-      "baseUrl": {{ .ai_baseurl }},
-      "apiKey": {{ .ai_apikey }},
+      "baseUrl": "{{ .ai_baseurl }}/v1",
+      "apiKey": "{{ .ai_apikey }}",
       "api": "openai-completions",
       "models": [
         {
@@ -66,8 +66,8 @@
       ]
     },
     "DeepSeek": {
-      "baseUrl": {{ .ai_baseurl }},
-      "apiKey": {{ .ai_apikey }},
+      "baseUrl": "{{ .ai_baseurl }}/v1",
+      "apiKey": "{{ .ai_apikey }}",
       "api": "openai-completions",
       "models": [
         {
@@ -131,8 +131,8 @@
       ]
     },
     "GLM": {
-      "baseUrl": {{ .ai_baseurl }},
-      "apiKey": {{ .ai_apikey }},
+      "baseUrl": "{{ .ai_baseurl }}/v1",
+      "apiKey": "{{ .ai_apikey }}",
       "api": "openai-completions",
       "models": [
         {
@@ -144,6 +144,32 @@
           ],
           "contextWindow": 202752,
           "maxTokens": 32768,
+          "cost": {
+            "input": 1.4,
+            "output": 4.4,
+            "cacheRead": 0.26,
+            "cacheWrite": 0
+          },
+          "compat": {
+            "maxTokensField": "max_tokens"
+          }
+        },
+        {
+          "id": "glm-5.2",
+          "name": "GLM-5.2",
+          "reasoning": true,
+          "thinkingLevelMap": {
+            "minimal": null,
+            "low": null,
+            "medium": null,
+            "high": "high",
+            "xhigh": "max"
+          },
+          "input": [
+            "text"
+          ],
+          "contextWindow": 1000000,
+          "maxTokens": 131072,
           "cost": {
             "input": 1.4,
             "output": 4.4,
