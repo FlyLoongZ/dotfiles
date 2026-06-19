@@ -140,9 +140,9 @@ xhttp_opt: &xhttp_opt
   path: {{ .xhttp_path }}
   mode: stream-up
   reuse-settings:
-    max-connections: 1
+    max-connections: 3-6
     c-max-reuse-times: 0
-    h-max-reusable-secs: 1800-3000
+    h-max-reusable-secs: 600-1800
     h-keep-alive-period: 0
 
 xmux_down: &xmux_down
@@ -171,53 +171,42 @@ proxies:
   - name: xhttp
     <<: *xhttp_proxies
     server: {{ .xhttp_server }}
-    servername: {{ .xhttp1_server }}
-    xhttp-opts:
-      <<: *xhttp_opt
-      download-settings:
-        <<: *xmux_down
-        server: {{ .xhttp2_server }}
-        servername: {{ .xhttp1_server }}
-
-  - name: xhttp-h3
-    <<: *xhttp_proxies
-    server: {{ .xhttp_server }}
-    servername: {{ .xhttp1_server }}
-    xhttp-opts:
-      <<: *xhttp_opt
-      download-settings:
-        <<: *xmux_down
-        alpn: [h3]
-        server: {{ .xhttp_server2 }}
-        servername: {{ .xhttp1_server }}
-
-  - name: xhttp-h3-2
-    <<: *xhttp_proxies
-    server: {{ .xhttp_server2 }}
     servername: {{ .xhttp2_server }}
     xhttp-opts:
       <<: *xhttp_opt
       download-settings:
         <<: *xmux_down
-        alpn: [h3]
-        server: {{ .xhttp_server }}
-        servername: {{ .xhttp2_server }}
+        server: {{ .xhttp_server2 }}
+        servername: {{ .xhttp1_server }}
+
+  - name: xhttp-h3
+    <<: *xhttp_proxies
+    server: {{ .xhttp_server }}
+    servername: {{ .xhttp2_server }}
+    alpn: [h3]
+    xhttp-opts:
+      <<: *xhttp_opt
+      mode: auto
+      download-settings:
+        <<: *xmux_down
+        server: {{ .xhttp_server2 }}
+        servername: {{ .xhttp1_server }}
 
   - name: xhttp2
     <<: *xhttp_proxies
-    server: {{ .xhttp3_server }}
+    server: {{ .xhttp_server3 }}
     servername: {{ .xhttp3_server }}
     xhttp-opts:
       <<: *xhttp_opt
       download-settings:
         <<: *xmux_down
-        server: {{ .xhttp4_server }}
+        server: {{ .xhttp_server2 }}
         servername: {{ .xhttp4_server }}
 
   - name: xhttp-fastly
     <<: *xhttp_proxies
-    server: {{ .xhttp1_server }}
-    servername: {{ .xhttp1_server }}
+    server: {{ .xhttp_server }}
+    servername: {{ .xhttp2_server }}
     xhttp-opts:
       <<: *xhttp_opt
       mode: stream-up
@@ -251,8 +240,6 @@ proxy-groups:
     proxies:
       - xhttp
       - xhttp-h3
-      - xhttp-h3-2
-      - xhttp-balance
       - xhttp2
       - xhttp-fastly
       - reality-up+xhttp-down
@@ -265,13 +252,6 @@ proxy-groups:
       - 其它地区
       - 全部节点
       - DIRECT
-
-  - name: xhttp-balance
-    type: load-balance
-    strategy: round-robin
-    proxies:
-      - xhttp-h3
-      - xhttp-h3-2
 
   - name: 美国
     type: select
