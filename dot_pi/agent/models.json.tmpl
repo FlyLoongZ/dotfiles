@@ -181,6 +181,33 @@
           }
         }
       ]
+    },
+    "Kimi": {
+      "baseUrl": "{{ .ai_baseurl }}/anthropic",
+      "apiKey": "{{ .ai_apikey }}",
+      "api": "anthropic-messages",
+      "models": [
+        {
+          "id": "kimi-k2.7-code",
+          "name": "Kimi K2.7 Code",
+          "reasoning": true,
+          "input": [
+            "text",
+            "image"
+          ],
+          "contextWindow": 262144,
+          "maxTokens": 262144,
+          "cost": {
+            "input": 0.95,
+            "output": 4,
+            "cacheRead": 0.19,
+            "cacheWrite": 0
+          },
+          "compat": {
+            "maxTokensField": "max_tokens"
+          }
+        }
+      ]
     }
   }
 }
