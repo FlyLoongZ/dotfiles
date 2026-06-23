@@ -1,0 +1,24 @@
+{
+  "permission": {
+    "*": "ask",
+    "read": "allow",
+    "bash": {
+      "ls *": "allow",
+      "grep *": "allow",
+      "find *": "allow",
+      "rg *": "allow",
+      "head *": "allow",
+      "tail *": "allow",
+      "xargs *": "allow",
+      "sort *": "allow",
+      "wc *": "allow"
+    },
+    "skill": {
+      "*": "allow"
+    },
+    "mcp": {
+      "*": "allow"
+    },
+    "external_directory": "ask"
+  }
+}
