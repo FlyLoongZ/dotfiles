@@ -1,24 +1,14 @@
 {
   "permission": {
-    "*": "ask",
-    "read": "allow",
+    "*": "allow",
     "bash": {
-      "ls *": "allow",
-      "grep *": "allow",
-      "find *": "allow",
-      "rg *": "allow",
-      "head *": "allow",
-      "tail *": "allow",
-      "xargs *": "allow",
-      "sort *": "allow",
-      "wc *": "allow"
+      "rm *": "ask",
+      "git *": "ask",
+      "python *": "ask",
+      "node *": "ask"
     },
-    "skill": {
-      "*": "allow"
-    },
-    "mcp": {
-      "*": "allow"
-    },
+    "write": "ask",
+    "edit": "ask",
     "external_directory": "ask"
   }
 }
