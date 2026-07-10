@@ -71,6 +71,34 @@
         }
       ]
     },
+    "xAI": {
+      "baseUrl": "{{ .ai_baseurl }}/v1",
+      "apiKey": "{{ .ai_apikey }}",
+      "api": "openai-completions",
+      "models": [
+        {
+          "id": "grok-4.5",
+          "name": "Grok 4.5",
+          "reasoning": true,
+          "input": [
+            "text",
+            "image"
+          ],
+          "contextWindow": 500000,
+          "maxTokens": 500000,
+          "cost": {
+            "input": 2,
+            "output": 6,
+            "cacheRead": 0.5,
+            "cacheWrite": 0
+          },
+          "compat": {
+            "supportsStore": false,
+            "supportsDeveloperRole": false
+          }
+        }
+      ]
+    },
     "DeepSeek": {
       "baseUrl": "{{ .ai_baseurl }}/v1",
       "apiKey": "{{ .ai_apikey }}",
@@ -140,25 +168,6 @@
       "api": "openai-completions",
       "models": [
         {
-          "id": "glm-5.1",
-          "name": "GLM-5.1",
-          "reasoning": true,
-          "input": [
-            "text"
-          ],
-          "contextWindow": 202752,
-          "maxTokens": 32768,
-          "cost": {
-            "input": 1.4,
-            "output": 4.4,
-            "cacheRead": 0.26,
-            "cacheWrite": 0
-          },
-          "compat": {
-            "thinkingFormat": "zai"
-          }
-        },
-        {
           "id": "glm-5.2",
           "name": "GLM-5.2",
           "reasoning": true,
@@ -181,6 +190,7 @@
             "cacheWrite": 0
           },
           "compat": {
+            "supportsDeveloperRole": false,
             "thinkingFormat": "zai"
           }
         }
