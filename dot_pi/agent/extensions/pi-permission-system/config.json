@@ -5,10 +5,11 @@
       "rm *": "ask",
       "git *": "ask",
       "python *": "ask",
+      "python3 *": "ask",
       "node *": "ask"
     },
     "write": "ask",
     "edit": "ask",
-    "external_directory": "ask"
+    "external_directory": "allow"
   }
 }
