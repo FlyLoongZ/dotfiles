@@ -74,7 +74,7 @@
     "xAI": {
       "baseUrl": "{{ .ai_baseurl }}/v1",
       "apiKey": "{{ .ai_apikey }}",
-      "api": "openai-completions",
+      "api": "openai-responses",
       "models": [
         {
           "id": "grok-4.5",
@@ -91,10 +91,6 @@
             "output": 6,
             "cacheRead": 0.5,
             "cacheWrite": 0
-          },
-          "compat": {
-            "supportsStore": false,
-            "supportsDeveloperRole": false
           }
         }
       ]
