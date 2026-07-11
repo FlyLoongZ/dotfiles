@@ -20,6 +20,8 @@
       "~/.cargo",
       "~/.rustup",
       "~/.local/share/npm-global/lib/node_modules/@earendil-works",
+      "~/.config/go",
+      "~/.local/share/go",
       "~/.pi/agent/skills"
     ],
     "allowWrite": [
@@ -28,7 +30,9 @@
       "/tmp",
       "~/.cache",
       "~/.cargo",
-      "~/.rustup"
+      "~/.rustup",
+      "~/.config/go",
+      "~/.local/share/go"
     ],
     "denyWrite": []
   }
