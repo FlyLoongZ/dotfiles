@@ -4,6 +4,10 @@
     "bash": {
       "rm *": "ask",
       "git *": "ask",
+      "git diff *": "allow",
+      "git log *": "allow",
+      "git show *": "allow",
+      "git status *": "allow",
       "python *": "ask",
       "python3 *": "ask",
       "node *": "ask"
