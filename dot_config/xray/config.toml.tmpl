@@ -87,17 +87,14 @@ protocol = "freedom"
 domainStrategy = "IPIfNonMatch"
 
 [[routing.rules]]
-domain = ["geosite:geolocation-cn", "geosite:private", "paypal.com", "paypalobjects.com"]
+domain = ["geosite:cn", "geosite:private", "paypal.com", "paypalobjects.com"]
 outboundTag = "direct"
 [[routing.rules]]
 domain = ["geosite:geolocation-!cn", "dns-global"]
 outboundTag = "xhttp"
 
 [[routing.rules]]
-ip = ["geoip:private"]
-outboundTag = "direct"
-[[routing.rules]]
-ip = ["geoip:cn"]
+ip = ["geoip:private", "geoip:cn"]
 outboundTag = "direct"
 [[routing.rules]]
 ip = ["geoip:!cn"]
