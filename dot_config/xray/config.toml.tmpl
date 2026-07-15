@@ -1,0 +1,106 @@
+[log]
+loglevel = "warning"
+#maskAddress = "quarter"
+
+[dns]
+enableParallelQuery = true
+[[dns.servers]]
+tag = "dns-local"
+address = "127.0.0.1"
+port = 53
+domains = ["geosite:cn", "geosite:private"]
+expectedIPs = ["geoip:cn", "geoip:private"]
+[[dns.servers]]
+tag = "dns-global"
+address = "https://1.1.1.1/dns-query"
+domains = ["geosite:geolocation-!cn"]
+[[dns.servers]]
+tag = "dns-global"
+address = "https://8.8.8.8/dns-query"
+domains = ["geosite:geolocation-!cn"]
+
+
+[[inbounds]]
+port = 57878
+listen = "127.0.0.1"
+protocol = "socks"
+[inbounds.settings]
+udp = true
+
+
+[[outbounds]]
+tag = "xhttp"
+protocol = "vless"
+[outbounds.settings]
+address = "{{ .xhttp_server }}"
+port = 443
+id = "{{ .xhttp_uuid }}"
+encryption = "{{ .vless_enc }}"
+flow = "xtls-rprx-vision-udp443"
+[outbounds.streamSettings]
+network = "xhttp"
+security = "tls"
+[outbounds.streamSettings.tlsSettings]
+serverName = "{{ .xhttp2_server }}"
+alpn = ["h2"]
+echConfigList = "udp://127.0.0.1"
+[outbounds.streamSettings.xhttpSettings]
+path = "{{ .xhttp_path }}"
+xPaddingObfsMode = true
+xPaddingPlacement = "header"
+xPaddingMethod = "tokenish"
+xPaddingHeader = "X-Auth-Token"
+mode = "stream-up"
+[outbounds.streamSettings.xhttpSettings.xmux]
+maxConcurrency = "16-32"
+cMaxReuseTimes = 0
+hMaxReusableSecs = "1800-3000"
+hKeepAlivePeriod = 0
+[outbounds.streamSettings.xhttpSettings.downloadSettings]
+address = "{{ .xhttp_server2 }}"
+port = 443
+network = "xhttp"
+security = "tls"
+[outbounds.streamSettings.xhttpSettings.downloadSettings.tlsSettings]
+serverName = "{{ .xhttp2_server }}"
+alpn = ["h2"]
+echConfigList = "udp://127.0.0.1"
+[outbounds.streamSettings.xhttpSettings.downloadSettings.xhttpSettings]
+path = "{{ .xhttp_path }}"
+xPaddingObfsMode = true
+xPaddingPlacement = "header"
+xPaddingMethod = "tokenish"
+xPaddingHeader = "X-Auth-Token"
+mode = "stream-up"
+[outbounds.streamSettings.xhttpSettings.downloadSettings.xhttpSettings.xmux]
+maxConcurrency = "8-24"
+cMaxReuseTimes = 0
+hMaxReusableSecs = "1800-3000"
+hKeepAlivePeriod = 0
+
+
+[[outbounds]]
+tag = "direct"
+protocol = "freedom"
+
+[routing]
+domainStrategy = "IPIfNonMatch"
+
+[[routing.rules]]
+domain = ["geosite:geolocation-cn", "geosite:private", "paypal.com", "paypalobjects.com"]
+outboundTag = "direct"
+[[routing.rules]]
+domain = ["geosite:geolocation-!cn", "dns-global"]
+outboundTag = "xhttp"
+
+[[routing.rules]]
+ip = ["geoip:private"]
+outboundTag = "direct"
+[[routing.rules]]
+ip = ["geoip:cn"]
+outboundTag = "direct"
+[[routing.rules]]
+ip = ["geoip:!cn"]
+outboundTag = "xhttp"
+
+
