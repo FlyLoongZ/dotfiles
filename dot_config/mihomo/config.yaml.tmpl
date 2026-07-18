@@ -164,39 +164,39 @@ proxies:
   - name: xhttp
     <<: *xhttp_proxies
     server: {{ .xhttp_server }}
-    servername: {{ .xhttp2_server }}
+    servername: {{ .xhttp_sni2 }}
     xhttp-opts:
       <<: *xhttp_opt
       download-settings:
         server: {{ .xhttp_server2 }}
-        servername: {{ .xhttp1_server }}
+        servername: {{ .xhttp_sni }}
 
   - name: xhttp-h3
     <<: *xhttp_proxies
     server: {{ .xhttp_server }}
-    servername: {{ .xhttp2_server }}
+    servername: {{ .xhttp_sni2 }}
     alpn: [h3]
     xhttp-opts:
       <<: *xhttp_opt
       mode: auto
       download-settings:
         server: {{ .xhttp_server2 }}
-        servername: {{ .xhttp1_server }}
+        servername: {{ .xhttp_sni }}
 
   - name: xhttp2
     <<: *xhttp_proxies
     server: {{ .xhttp_server3 }}
-    servername: {{ .xhttp3_server }}
+    servername: {{ .xhttp_sni3 }}
     xhttp-opts:
       <<: *xhttp_opt
       download-settings:
         server: {{ .xhttp_server2 }}
-        servername: {{ .xhttp4_server }}
+        servername: {{ .xhttp_sni4 }}
 
   - name: xhttp-fastly
     <<: *xhttp_proxies
     server: {{ .xhttp_server }}
-    servername: {{ .xhttp2_server }}
+    servername: {{ .xhttp_sni2 }}
     xhttp-opts:
       <<: *xhttp_opt
       mode: stream-up
@@ -216,8 +216,8 @@ proxies:
     xhttp-opts:
       <<: *xhttp_opt
       download-settings:
-        server: {{ .xhttp2_server }}
-        servername: {{ .xhttp2_server }}
+        server: {{ .xhttp_sni2 }}
+        servername: {{ .xhttp_sni2 }}
         reality-opts:
           public-key: ""
 

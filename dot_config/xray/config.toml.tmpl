@@ -41,7 +41,7 @@ flow = "xtls-rprx-vision-udp443"
 network = "xhttp"
 security = "tls"
 [outbounds.streamSettings.tlsSettings]
-serverName = "{{ .xhttp2_server }}"
+serverName = "{{ .xhttp_sni2 }}"
 alpn = ["h2"]
 echConfigList = "udp://127.0.0.1"
 [outbounds.streamSettings.xhttpSettings]
@@ -62,7 +62,7 @@ port = 443
 network = "xhttp"
 security = "tls"
 [outbounds.streamSettings.xhttpSettings.downloadSettings.tlsSettings]
-serverName = "{{ .xhttp2_server }}"
+serverName = "{{ .xhttp_sni2 }}"
 alpn = ["h2"]
 echConfigList = "udp://127.0.0.1"
 [outbounds.streamSettings.xhttpSettings.downloadSettings.xhttpSettings]
