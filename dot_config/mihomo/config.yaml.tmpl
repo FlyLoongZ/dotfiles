@@ -183,15 +183,13 @@ proxies:
         server: {{ .xhttp_server2 }}
         servername: {{ .xhttp_sni }}
 
-  - name: xhttp2
+  - name: xhttp-one
     <<: *xhttp_proxies
-    server: {{ .xhttp_server3 }}
-    servername: {{ .xhttp_sni3 }}
+    server: {{ .xhttp_server }}
+    servername: {{ .xhttp_sni }}
     xhttp-opts:
       <<: *xhttp_opt
-      download-settings:
-        server: {{ .xhttp_server2 }}
-        servername: {{ .xhttp_sni4 }}
+      mode: stream-one
 
   - name: xhttp-fastly
     <<: *xhttp_proxies
@@ -205,6 +203,16 @@ proxies:
         servername: {{ .xhttp_fastly_server }}
         ech-opts:
           enable: false
+
+  - name: xhttp2
+    <<: *xhttp_proxies
+    server: {{ .xhttp_server }}
+    servername: {{ .xhttp_sni3 }}
+    xhttp-opts:
+      <<: *xhttp_opt
+      download-settings:
+        server: {{ .xhttp_server2 }}
+        servername: {{ .xhttp_sni4 }}
 
   - name: reality-up+xhttp-down
     <<: *xhttp_proxies
@@ -228,8 +236,9 @@ proxy-groups:
     proxies:
       - xhttp
       - xhttp-h3
-      - xhttp2
+      - xhttp-one
       - xhttp-fastly
+      - xhttp2
       - reality-up+xhttp-down
       - vless
       - 美国
