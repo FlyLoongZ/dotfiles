@@ -140,16 +140,9 @@ xhttp_opt: &xhttp_opt
   path: {{ .xhttp_path }}
   mode: stream-up
   reuse-settings:
-    max-connections: 3-6
+    max-concurrency: 16-32
     c-max-reuse-times: 0
-    h-max-reusable-secs: 600-1800
-    h-keep-alive-period: 0
-
-xmux_down: &xmux_down
-  reuse-settings:
-    max-concurrency: 8-16
-    c-max-reuse-times: 0
-    h-max-reusable-secs: 1800-3000
+    h-max-reusable-secs: 1800-3600
     h-keep-alive-period: 0
 
 proxies:
@@ -175,7 +168,6 @@ proxies:
     xhttp-opts:
       <<: *xhttp_opt
       download-settings:
-        <<: *xmux_down
         server: {{ .xhttp_server2 }}
         servername: {{ .xhttp1_server }}
 
@@ -188,7 +180,6 @@ proxies:
       <<: *xhttp_opt
       mode: auto
       download-settings:
-        <<: *xmux_down
         server: {{ .xhttp_server2 }}
         servername: {{ .xhttp1_server }}
 
@@ -199,7 +190,6 @@ proxies:
     xhttp-opts:
       <<: *xhttp_opt
       download-settings:
-        <<: *xmux_down
         server: {{ .xhttp_server2 }}
         servername: {{ .xhttp4_server }}
 
@@ -211,7 +201,6 @@ proxies:
       <<: *xhttp_opt
       mode: stream-up
       download-settings:
-        <<: *xmux_down
         server: {{ .xhttp_fastly_server }}
         servername: {{ .xhttp_fastly_server }}
         ech-opts:
@@ -227,7 +216,6 @@ proxies:
     xhttp-opts:
       <<: *xhttp_opt
       download-settings:
-        <<: *xmux_down
         server: {{ .xhttp2_server }}
         servername: {{ .xhttp2_server }}
         reality-opts:
