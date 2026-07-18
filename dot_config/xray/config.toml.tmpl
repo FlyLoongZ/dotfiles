@@ -54,7 +54,7 @@ mode = "stream-up"
 [outbounds.streamSettings.xhttpSettings.xmux]
 maxConcurrency = "16-32"
 cMaxReuseTimes = 0
-hMaxReusableSecs = "1800-3000"
+hMaxReusableSecs = "1800-3600"
 hKeepAlivePeriod = 0
 [outbounds.streamSettings.xhttpSettings.downloadSettings]
 address = "{{ .xhttp_server2 }}"
@@ -73,9 +73,38 @@ xPaddingMethod = "tokenish"
 xPaddingHeader = "X-Auth-Token"
 mode = "stream-up"
 [outbounds.streamSettings.xhttpSettings.downloadSettings.xhttpSettings.xmux]
-maxConcurrency = "8-24"
+maxConcurrency = "16-32"
 cMaxReuseTimes = 0
-hMaxReusableSecs = "1800-3000"
+hMaxReusableSecs = "1800-3600"
+hKeepAlivePeriod = 0
+
+[[outbounds]]
+tag = "xhttp-one"
+protocol = "vless"
+[outbounds.settings]
+address = "{{ .xhttp_server }}"
+port = 443
+id = "{{ .xhttp_uuid }}"
+encryption = "{{ .vless_enc }}"
+flow = "xtls-rprx-vision-udp443"
+[outbounds.streamSettings]
+network = "xhttp"
+security = "tls"
+[outbounds.streamSettings.tlsSettings]
+serverName = "{{ .xhttp_sni }}"
+alpn = ["h2"]
+echConfigList = "udp://127.0.0.1"
+[outbounds.streamSettings.xhttpSettings]
+path = "{{ .xhttp_path }}"
+xPaddingObfsMode = true
+xPaddingPlacement = "header"
+xPaddingMethod = "tokenish"
+xPaddingHeader = "X-Auth-Token"
+mode = "stream-one"
+[outbounds.streamSettings.xhttpSettings.xmux]
+maxConcurrency = "16-32"
+cMaxReuseTimes = 0
+hMaxReusableSecs = "1800-3600"
 hKeepAlivePeriod = 0
 
 
@@ -99,5 +128,3 @@ outboundTag = "direct"
 [[routing.rules]]
 ip = ["geoip:!cn"]
 outboundTag = "xhttp"
-
-
