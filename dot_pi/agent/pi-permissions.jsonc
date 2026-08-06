@@ -1,0 +1,24 @@
+{
+    "defaultPolicy": {
+        "tools": "allow",
+        "bash": "allow",
+        "mcp": "allow",
+        "skills": "allow",
+        "special": "allow"
+    },
+    "tools": {
+        "edit": "ask",
+        "write": "ask"
+    },
+    "bash": {
+        "git *": "ask",
+        "git diff *": "allow",
+        "git log *": "allow",
+        "git show *": "allow",
+        "git status *": "allow",
+        "node *": "ask",
+        "python *": "ask",
+        "python3 *": "ask",
+        "rm *": "ask"
+    }
+}
