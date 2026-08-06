@@ -8,6 +8,9 @@
     "allowedDomains": [],
     "deniedDomains": []
   },
+  "shell": {
+    "readAccess": "policy"
+  },
   "filesystem": {
     "denyRead": [
       "/home"
