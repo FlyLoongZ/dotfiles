@@ -22,7 +22,7 @@
       "~/.cache",
       "~/.cargo",
       "~/.rustup",
-      "~/.local/share/npm-global/lib/node_modules/@earendil-works",
+      "~/.local/share/npm-global",
       "~/.config/go",
       "~/.local/share/go",
       "~/.pi/agent/skills",
