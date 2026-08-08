@@ -55,7 +55,7 @@ mode = "stream-up"
 [outbounds.streamSettings.xhttpSettings.xmux]
 maxConcurrency = "16-32"
 cMaxReuseTimes = 0
-hMaxReusableSecs = "1800-3600"
+hMaxReusableSecs = "600-2400"
 hKeepAlivePeriod = 0
 [outbounds.streamSettings.xhttpSettings.downloadSettings]
 address = "{{ .xhttp_server2 }}"
@@ -76,7 +76,7 @@ mode = "stream-up"
 [outbounds.streamSettings.xhttpSettings.downloadSettings.xhttpSettings.xmux]
 maxConcurrency = "16-32"
 cMaxReuseTimes = 0
-hMaxReusableSecs = "1800-3600"
+hMaxReusableSecs = "600-2400"
 hKeepAlivePeriod = 0
 
 [[outbounds]]
