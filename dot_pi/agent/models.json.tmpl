@@ -8,7 +8,7 @@
         "User-Agent": "{{ .ai_user_agent }}"
       },
       "models": [
-       {
+        {
           "id": "gpt-5.6-sol",
           "name": "GPT-5.6 Sol",
           "reasoning": true,
@@ -18,6 +18,7 @@
           ],
           "thinkingLevelMap": {
             "off": "none",
+            "minimal": null,
             "xhigh": "xhigh",
             "max": "max"
           },
@@ -37,6 +38,50 @@
                 "cacheWrite": 12.5
               }
             ]
+          },
+          "compat": {
+            "supportsStrictMode": true,
+            "supportsOpenAIGrammarTools": true,
+            "supportsToolSearch": true,
+            "supportsExplicitPromptCacheMode": true
+          }
+        },
+        {
+          "id": "gpt-5.6-luna",
+          "name": "GPT-5.6 Luna",
+          "reasoning": true,
+          "input": [
+            "text",
+            "image"
+          ],
+          "thinkingLevelMap": {
+            "off": "none",
+            "minimal": null,
+            "xhigh": "xhigh",
+            "max": "max"
+          },
+          "contextWindow": 272000,
+          "maxTokens": 128000,
+          "cost": {
+            "input": 0.2,
+            "output": 1.2,
+            "cacheRead": 0.02,
+            "cacheWrite": 0.25,
+            "tiers": [
+              {
+                "inputTokensAbove": 272000,
+                "input": 0.4,
+                "output": 1.8,
+                "cacheRead": 0.04,
+                "cacheWrite": 0.5
+              }
+            ]
+          },
+          "compat": {
+            "supportsStrictMode": true,
+            "supportsOpenAIGrammarTools": true,
+            "supportsToolSearch": true,
+            "supportsExplicitPromptCacheMode": true
           }
         },
         {
