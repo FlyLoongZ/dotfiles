@@ -278,6 +278,24 @@
           }
         }
       ]
+    },
+    "商汤": {
+      "baseUrl": "{{ .ai_baseurl }}/v1",
+      "apiKey": "{{ .ai_apikey }}",
+      "api": "openai-completions",
+      "models": [
+        {
+          "id": "sensenova-6.7-flash-lite",
+          "name": "SenseNova 6.7 Flash Lite",
+          "reasoning": true,
+          "input": [
+            "text",
+            "image"
+          ],
+          "contextWindow": 256000,
+          "maxTokens": 65535
+        }
+      ]
     }
   }
 }
