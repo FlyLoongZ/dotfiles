@@ -343,15 +343,18 @@
       "api": "openai-completions",
       "models": [
         {
-          "id": "sensenova-6.7-flash-lite",
-          "name": "SenseNova 6.7 Flash Lite",
+          "id": "sensenova-6.8-flash-lite",
+          "name": "SenseNova 6.8 Flash Lite",
           "reasoning": true,
           "input": [
             "text",
             "image"
           ],
           "contextWindow": 256000,
-          "maxTokens": 65535
+          "maxTokens": 65535,
+          "compat": {
+            "supportsDeveloperRole": false
+          }
         }
       ]
     }
