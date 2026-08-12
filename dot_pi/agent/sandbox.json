@@ -25,6 +25,7 @@
       "~/.local/share/npm-global",
       "~/.config/go",
       "~/.local/share/go",
+      "~/.local/share/chrome-devtools-mcp",
       "~/.pi/agent/skills",
       "~/.npmrc",
       "~/.npm"
@@ -38,6 +39,7 @@
       "~/.rustup",
       "~/.config/go",
       "~/.local/share/go",
+      "~/.local/share/chrome-devtools-mcp",
       "~/.npmrc",
       "~/.npm"
     ],
