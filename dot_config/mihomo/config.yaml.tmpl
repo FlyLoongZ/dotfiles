@@ -148,17 +148,17 @@ xhttp_opt: &xhttp_opt
 proxies:
   - name: vless
     type: vless
-    server: {{ .vless_server }}
+    server: {{ .reality_server }}
     port: 443
     udp: true
-    uuid: {{ .vless_uuid }}
+    uuid: {{ .reality_uuid }}
     flow: xtls-rprx-vision
     packet-encoding: xudp
     tls: true
-    servername: {{ .vless_sni }}
+    servername: {{ .reality_sni }}
     client-fingerprint: chrome
     reality-opts:
-      public-key: {{ .vless_public_key }}
+      public-key: {{ .reality_publicKey }}
       support-x25519mlkem768: true
 
   - name: xhttp
@@ -216,10 +216,10 @@ proxies:
 
   - name: reality-up+xhttp-down
     <<: *xhttp_proxies
-    server: {{ .vless_server }}
-    servername: {{ .vless_sni }}
+    server: {{ .reality_server }}
+    servername: {{ .reality_sni }}
     reality-opts:
-      public-key: {{ .vless_public_key }}
+      public-key: {{ .reality_publicKey }}
       support-x25519mlkem768: true
     xhttp-opts:
       <<: *xhttp_opt
