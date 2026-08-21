@@ -163,24 +163,27 @@
       ]
     },
     "Google": {
-      "baseUrl": "{{ .ai_baseurl }}/v1",
+      "baseUrl": "{{ .ai_baseurl }}/v1beta",
       "apiKey": "{{ .ai_apikey }}",
-      "api": "openai-completions",
+      "api": "google-generative-ai",
       "models": [
         {
-          "id": "gemini-3.5-flash",
-          "name": "Gemini 3.5 Flash",
+          "id": "gemini-3.7-flash",
+          "name": "Gemini 3.7 Flash",
           "reasoning": true,
           "input": [
             "text",
             "image"
           ],
+          "thinkingLevelMap": {
+            "off": null
+          },
           "contextWindow": 1048576,
           "maxTokens": 65536,
           "cost": {
-            "input": 1.5,
-            "output": 9,
-            "cacheRead": 0.15,
+            "input": 0.75,
+            "output": 3.75,
+            "cacheRead": 0.075,
             "cacheWrite": 0
           }
         }
