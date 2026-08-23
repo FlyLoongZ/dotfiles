@@ -59,6 +59,33 @@
         }
       ]
     },
+    "Google": {
+      "baseUrl": "{{ .ai_baseurl }}/v1beta",
+      "apiKey": "{{ .ai_apikey }}",
+      "api": "google-generative-ai",
+      "models": [
+        {
+          "id": "gemini-3.7-flash",
+          "name": "Gemini 3.7 Flash",
+          "reasoning": true,
+          "input": [
+            "text",
+            "image"
+          ],
+          "thinkingLevelMap": {
+            "off": null
+          },
+          "contextWindow": 662820,
+          "maxTokens": 65536,
+          "cost": {
+            "input": 0.75,
+            "output": 3.75,
+            "cacheRead": 0.075,
+            "cacheWrite": 0
+          }
+        }
+      ]
+    },
     "OpenAI": {
       "baseUrl": "{{ .ai_baseurl }}/v1",
       "apiKey": "{{ .ai_apikey }}",
@@ -162,33 +189,6 @@
         }
       ]
     },
-    "Google": {
-      "baseUrl": "{{ .ai_baseurl }}/v1beta",
-      "apiKey": "{{ .ai_apikey }}",
-      "api": "google-generative-ai",
-      "models": [
-        {
-          "id": "gemini-3.7-flash",
-          "name": "Gemini 3.7 Flash",
-          "reasoning": true,
-          "input": [
-            "text",
-            "image"
-          ],
-          "thinkingLevelMap": {
-            "off": null
-          },
-          "contextWindow": 662820,
-          "maxTokens": 65536,
-          "cost": {
-            "input": 0.75,
-            "output": 3.75,
-            "cacheRead": 0.075,
-            "cacheWrite": 0
-          }
-        }
-      ]
-    },
     "xAI": {
       "baseUrl": "{{ .ai_baseurl }}/v1",
       "apiKey": "{{ .ai_apikey }}",
@@ -218,6 +218,27 @@
             "output": 6,
             "cacheRead": 0.5,
             "cacheWrite": 0
+          }
+        }
+      ]
+    },
+    "商汤": {
+      "baseUrl": "{{ .ai_baseurl }}/v1",
+      "apiKey": "{{ .ai_apikey }}",
+      "api": "openai-completions",
+      "models": [
+        {
+          "id": "sensenova-6.8-flash-lite",
+          "name": "SenseNova 6.8 Flash Lite",
+          "reasoning": true,
+          "input": [
+            "text",
+            "image"
+          ],
+          "contextWindow": 256000,
+          "maxTokens": 65535,
+          "compat": {
+            "supportsDeveloperRole": false
           }
         }
       ]
@@ -275,6 +296,97 @@
             "output": 3.48,
             "cacheRead": 0.0145,
             "cacheWrite": 0
+          }
+        }
+      ]
+    },
+    "小米": {
+      "baseUrl": "{{ .ai_baseurl }}/v1",
+      "apiKey": "{{ .ai_apikey }}",
+      "api": "openai-completions",
+      "models": [
+        {
+          "id": "mimo-v2.5",
+          "name": "MiMo V2.5",
+          "reasoning": true,
+          "input": [
+            "text",
+            "image"
+          ],
+          "contextWindow": 632120,
+          "maxTokens": 128000,
+          "cost": {
+            "input": 0.14,
+            "output": 0.28,
+            "cacheRead": 0.0028,
+            "cacheWrite": 0
+          },
+          "compat": {
+            "requiresReasoningContentOnAssistantMessages": true,
+            "thinkingFormat": "deepseek"
+          }
+        },
+        {
+          "id": "mimo-v2.5-pro",
+          "name": "MiMo V2.5 Pro",
+          "reasoning": true,
+          "input": [
+            "text"
+          ],
+          "contextWindow": 1048576,
+          "maxTokens": 131072,
+          "cost": {
+            "input": 1,
+            "output": 3,
+            "cacheRead": 0.2,
+            "cacheWrite": 0
+          },
+          "compat": {
+            "requiresReasoningContentOnAssistantMessages": true,
+            "thinkingFormat": "deepseek"
+          }
+        }
+      ]
+    },
+    "月之暗面": {
+      "baseUrl": "{{ .ai_baseurl }}/v1",
+      "apiKey": "{{ .ai_apikey }}",
+      "api": "openai-completions",
+      "models": [
+        {
+          "id": "kimi-k3",
+          "name": "Kimi K3",
+          "reasoning": true,
+          "input": [
+            "text",
+            "image"
+          ],
+          "thinkingLevelMap": {
+            "off": null,
+            "minimal": null,
+            "low": "low",
+            "medium": null,
+            "high": "high",
+            "xhigh": null,
+            "max": "max"
+          },
+          "contextWindow": 662820,
+          "maxTokens": 131072,
+          "cost": {
+            "input": 3,
+            "output": 15,
+            "cacheRead": 0.3,
+            "cacheWrite": 0
+          },
+          "compat": {
+            "supportsStore": false,
+            "supportsDeveloperRole": false,
+            "supportsReasoningEffort": true,
+            "maxTokensField": "max_tokens",
+            "supportsStrictMode": false,
+            "thinkingFormat": "openai",
+            "requiresReasoningContentOnAssistantMessages": true,
+            "deferredToolsMode": "kimi"
           }
         }
       ]
@@ -341,118 +453,6 @@
           "compat": {
             "supportsDeveloperRole": false,
             "thinkingFormat": "zai"
-          }
-        }
-      ]
-    },
-    "月之暗面": {
-      "baseUrl": "{{ .ai_baseurl }}/v1",
-      "apiKey": "{{ .ai_apikey }}",
-      "api": "openai-completions",
-      "models": [
-        {
-          "id": "kimi-k3",
-          "name": "Kimi K3",
-          "reasoning": true,
-          "input": [
-            "text",
-            "image"
-          ],
-          "thinkingLevelMap": {
-            "off": null,
-            "minimal": null,
-            "low": "low",
-            "medium": null,
-            "high": "high",
-            "xhigh": null,
-            "max": "max"
-          },
-          "contextWindow": 662820,
-          "maxTokens": 131072,
-          "cost": {
-            "input": 3,
-            "output": 15,
-            "cacheRead": 0.3,
-            "cacheWrite": 0
-          },
-          "compat": {
-            "supportsStore": false,
-            "supportsDeveloperRole": false,
-            "supportsReasoningEffort": true,
-            "maxTokensField": "max_tokens",
-            "supportsStrictMode": false,
-            "thinkingFormat": "openai",
-            "requiresReasoningContentOnAssistantMessages": true,
-            "deferredToolsMode": "kimi"
-          }
-        }
-      ]
-    },
-    "小米": {
-      "baseUrl": "{{ .ai_baseurl }}/v1",
-      "apiKey": "{{ .ai_apikey }}",
-      "api": "openai-completions",
-      "models": [
-        {
-          "id": "mimo-v2.5",
-          "name": "MiMo V2.5",
-          "reasoning": true,
-          "input": [
-            "text",
-            "image"
-          ],
-          "contextWindow": 632120,
-          "maxTokens": 128000,
-          "cost": {
-            "input": 0.14,
-            "output": 0.28,
-            "cacheRead": 0.0028,
-            "cacheWrite": 0
-          },
-          "compat": {
-            "requiresReasoningContentOnAssistantMessages": true,
-            "thinkingFormat": "deepseek"
-          }
-        },
-        {
-          "id": "mimo-v2.5-pro",
-          "name": "MiMo V2.5 Pro",
-          "reasoning": true,
-          "input": [
-            "text"
-          ],
-          "contextWindow": 1048576,
-          "maxTokens": 131072,
-          "cost": {
-            "input": 1,
-            "output": 3,
-            "cacheRead": 0.2,
-            "cacheWrite": 0
-          },
-          "compat": {
-            "requiresReasoningContentOnAssistantMessages": true,
-            "thinkingFormat": "deepseek"
-          }
-        }
-      ]
-    },
-    "商汤": {
-      "baseUrl": "{{ .ai_baseurl }}/v1",
-      "apiKey": "{{ .ai_apikey }}",
-      "api": "openai-completions",
-      "models": [
-        {
-          "id": "sensenova-6.8-flash-lite",
-          "name": "SenseNova 6.8 Flash Lite",
-          "reasoning": true,
-          "input": [
-            "text",
-            "image"
-          ],
-          "contextWindow": 256000,
-          "maxTokens": 65535,
-          "compat": {
-            "supportsDeveloperRole": false
           }
         }
       ]
