@@ -26,7 +26,10 @@
       "~/.config/go",
       "~/.local/share/go",
       "~/.local/share/chrome-devtools-mcp",
-      "~/.pi/agent/skills",
+      "~/.pi/agent",
+      "~/.config/pi",
+      "~/.dsh",
+      "~/Documents/dev/git-source/vision",
       "~/.npmrc",
       "~/.npm"
     ],
@@ -40,6 +43,8 @@
       "~/.config/go",
       "~/.local/share/go",
       "~/.local/share/chrome-devtools-mcp",
+      "~/.pi/agent",
+      "~/.config/pi",
       "~/.npmrc",
       "~/.npm"
     ],
