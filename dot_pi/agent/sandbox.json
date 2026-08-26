@@ -31,7 +31,9 @@
       "~/.dsh",
       "~/Documents/dev/git-source/vision",
       "~/.npmrc",
-      "~/.npm"
+      "~/.npm",
+      "~/.local/share/pnpm",
+      "~/.local/state/pnpm"
     ],
     "allowWrite": [
       ".",
@@ -46,7 +48,9 @@
       "~/.pi/agent",
       "~/.config/pi",
       "~/.npmrc",
-      "~/.npm"
+      "~/.npm",
+      "~/.local/share/pnpm",
+      "~/.local/state/pnpm"
     ],
     "denyWrite": []
   }
