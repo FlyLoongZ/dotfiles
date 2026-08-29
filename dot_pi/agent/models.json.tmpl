@@ -439,22 +439,22 @@
       "api": "openai-completions",
       "models": [
         {
-          "id": "glm-5.2",
-          "name": "GLM-5.2",
+          "id": "glm-5.3",
+          "name": "GLM-5.3",
           "reasoning": true,
+          "input": [
+            "text"
+          ],
           "thinkingLevelMap": {
             "off": null,
             "minimal": null,
-            "low": null,
+            "low": "low",
             "medium": null,
             "high": "high",
             "xhigh": null,
             "max": "max"
           },
-          "input": [
-            "text"
-          ],
-          "contextWindow": 632120,
+          "contextWindow": 1000000,
           "maxTokens": 131072,
           "cost": {
             "input": 1.4,
@@ -468,9 +468,13 @@
           }
         },
         {
-          "id": "stealth/ox-alpha",
-          "name": "Ox Alpha",
+          "id": "glm-5.3-flash",
+          "name": "GLM-5.3-Flash",
           "reasoning": true,
+          "input": [
+            "text",
+            "image"
+          ],
           "thinkingLevelMap": {
             "off": null,
             "minimal": null,
@@ -480,16 +484,12 @@
             "xhigh": null,
             "max": "max"
           },
-          "input": [
-            "text",
-            "image"
-          ],
-          "contextWindow": 632120,
+          "contextWindow": 1000000,
           "maxTokens": 131072,
           "cost": {
-            "input": 0,
-            "output": 0,
-            "cacheRead": 0,
+            "input": 0.075,
+            "output": 0.25,
+            "cacheRead": 0.015,
             "cacheWrite": 0
           },
           "compat": {
