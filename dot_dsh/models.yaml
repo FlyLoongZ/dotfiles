@@ -1,0 +1,219 @@
+llm-pi-ai:
+  providers:
+    Anthropic:
+      apiKeyEnv: AI_APIKEY
+      api: anthropic-messages
+      baseURL: {{ .ai_baseurl }}
+      reasoning: max
+      models:
+        - id: claude-fable-5
+          name: Claude Fable 5
+          contextWindow: 632120 #100000
+          maxTokens: 128000
+          input: [text, image]
+          reasoningEfforts:
+            high: high
+            xhigh: xhigh
+            max: max
+        - id: claude-opus-5
+          name: Claude Opus 5
+          contextWindow: 632120 #100000
+          maxTokens: 128000
+          input: [text, image]
+          reasoningEfforts:
+            high: high
+            xhigh: xhigh
+            max: max
+
+    Google:
+      apiKeyEnv: AI_APIKEY
+      api: openai-completions
+      baseURL: {{ .ai_baseurl }}/v1
+      reasoning: high
+      models:
+        - id: gemini-3.7-flash
+          name: Gemini 3.7 Flash
+          contextWindow: 662826 #1048567
+          maxTokens: 65536
+          input: [text, image]
+          reasoningEfforts:
+            low: low
+            medium: medium
+            high: high
+
+    OpenAI:
+      apiKeyEnv: AI_APIKEY
+      api: openai-responses
+      baseURL: {{ .ai_baseurl }}/v1
+      compat:
+        supportsStrictMode: true
+      reasoning: max
+      models:
+        - id: gpt-5.6-sol
+          name: GPT 5.6 Sol
+          contextWindow: 632120 #1000000
+          maxTokens: 128000
+          input: [text, image]
+          reasoningEfforts:
+            'off': none
+            high: high
+            xhigh: xhigh
+            max: max
+        - id: gpt-5.6-luna
+          name: GPT 5.6 Luna
+          contextWindow: 632120 #1000000
+          maxTokens: 128000
+          input: [text, image]
+          reasoningEfforts:
+            'off': none
+            high: high
+            xhigh: xhigh
+            max: max
+
+    Meta:
+      apiKeyEnv: AI_APIKEY
+      api: openai-responses
+      baseURL: {{ .ai_baseurl }}/v1
+      reasoning: xhigh
+      models:
+        - id: muse-spark-1.2-contributor
+          name: Muse Spark 1.2
+          contextWindow: 662826 #1048576
+          maxTokens: 131072
+          input: [text, image]
+          reasoningEfforts:
+            medium: medium
+            high: high
+            xhigh: xhigh
+
+    xAI:
+      apiKeyEnv: AI_APIKEY
+      api: openai-responses
+      baseURL: {{ .ai_baseurl }}/v1
+      reasoning: xhigh
+      models:
+        - id: grok-4.6
+          name: Grok 4.6
+          contextWindow: 500000
+          maxTokens: 500000
+          input: [text, image]
+          reasoningEfforts:
+            high: high
+            xhigh: xhigh
+
+    商汤:
+      apiKeyEnv: AI_APIKEY
+      api: anthropic-messages
+      baseURL: {{ .ai_baseurl }}
+      reasoning: high
+      models:
+        - id: sensenova-6.8-flash-lite
+          name: SenseNova 6.8 Flash Lite
+          contextWindow: 256000
+          maxTokens: 65535
+          input: [text, image]
+          reasoningEfforts:
+            'off': none
+            medium: medium
+            high: high
+
+    深度求索:
+      apiKeyEnv: AI_APIKEY
+      api: openai-completions
+      baseURL: {{ .ai_baseurl }}/v1
+      compat:
+        requiresReasoningContentOnAssistantMessages: true
+        supportsDeveloperRole: false
+        thinkingFormat: deepseek
+      reasoning: max
+      models:
+        - id: deepseek-v4-flash
+          name: DeepSeek V4 Flash
+          contextWindow: 632120 #100000
+          maxTokens: 384000
+          reasoningEfforts:
+            'off': none
+            high: high
+            max: max
+        - id: deepseek-v4-pro
+          name: DeepSeek V4 Pro
+          contextWindow: 632120 #100000
+          maxTokens: 384000
+          reasoningEfforts:
+            'off': none
+            high: high
+            max: max
+
+    小米:
+      apiKeyEnv: AI_APIKEY
+      api: openai-completions
+      baseURL: {{ .ai_baseurl }}/v1
+      compat:
+        requiresReasoningContentOnAssistantMessages: true
+        thinkingFormat: deepseek
+      models:
+        - id: mimo-v2.5
+          name: MiMo V2.5
+          contextWindow: 632120 #100000
+          maxTokens: 128000
+          input: [text, image]
+          reasoningEfforts:
+            'off': none
+            medium: medium
+            high: high
+        - id: mimo-v2.5-pro
+          name: MiMo V2.5 Pro
+          contextWindow: 1048576
+          maxTokens: 131072
+          input: [text, image]
+          reasoningEfforts:
+            'off': none
+            medium: medium
+            high: high
+
+    月之暗面:
+      apiKeyEnv: AI_APIKEY
+      api: openai-completions
+      baseURL: {{ .ai_baseurl }}/v1
+      reasoning: max
+      compat:
+        requiresReasoningContentOnAssistantMessages: true
+        supportsDeveloperRole: false
+        thinkingFormat: openai
+      models:
+        - id: kimi-k3
+          name: Kimi K3
+          contextWindow: 1048576
+          maxTokens: 131072
+          input: [text, image]
+          reasoningEfforts:
+            low: low
+            high: high
+            max: max
+
+    智谱:
+      apiKeyEnv: AI_APIKEY
+      api: openai-completions
+      baseURL: {{ .ai_baseurl }}/v1
+      reasoning: max
+      compat:
+        supportsDeveloperRole: false
+        thinkingFormat: zai
+      models:
+        - id: glm-5.3
+          name: GLM 5.3
+          contextWindow: 632120 #100000
+          maxTokens: 131072
+          reasoningEfforts:
+            low: low
+            high: high
+            max: max
+        - id: glm-5.3-flash
+          name: GLM-5.3-Flash
+          contextWindow: 632120 #100000
+          maxTokens: 131072
+          input: [text, image]
+          reasoningEfforts:
+            low: low
+            high: high
+            max: max
