@@ -4,38 +4,27 @@ import sys
 import subprocess
 import yaml
 
-def deep_merge(source, destination):
-    for k, v in source.items():
-        if isinstance(v, dict) and k in destination and isinstance(destination[k], dict):
-            deep_merge(v, destination[k])
-        else:
-            destination[k] = v
-    return destination
-
+# 1. 获取模型模板路径并渲染
 tmpl_path = os.path.join(
     os.environ.get("CHEZMOI_SOURCE_DIR", ""), 
     "dot_dsh/models.yaml"
 )
 
-fixed_data = {}
-if os.path.exists(tmpl_path):
-    with open(tmpl_path, "rb") as f:
-        rendered_yaml = subprocess.check_output(
-            ["chezmoi", "execute-template"], 
-            input=f.read()
-        ).decode("utf-8")
-    fixed_data = yaml.safe_load(rendered_yaml) or {}
+with open(tmpl_path, "rb") as f:
+    rendered = subprocess.check_output(
+        ["chezmoi", "execute-template"], 
+        input=f.read()
+    ).decode("utf-8")
+fixed = yaml.safe_load(rendered) or {}
 
-raw_stdin = sys.stdin.read()
-current_data = {}
-if raw_stdin.strip():
-    try:
-        current_data = yaml.safe_load(raw_stdin) or {}
-    except Exception:
-        current_data = {}
+# 2. 读取本地现有的整个配置文件（为空则初始化为 {}）
+current = yaml.safe_load(sys.stdin.read()) or {}
+if not isinstance(current, dict):
+    current = {}
 
-if not isinstance(current_data, dict):
-    current_data = {}
+# 3. 直接整块替换 llm-pi-ai 节点
+if "llm-pi-ai" in fixed:
+    current["llm-pi-ai"] = fixed["llm-pi-ai"]
 
-deep_merge(fixed_data, current_data)
-yaml.dump(current_data, sys.stdout, sort_keys=False, allow_unicode=True)
+# 4. 输出（保留除 llm-pi-ai 之外的其他所有字段和原本顺序）
+yaml.dump(current, sys.stdout, sort_keys=False, allow_unicode=True)
