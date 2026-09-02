@@ -288,8 +288,32 @@
     "深度求索": {
       "baseUrl": "{{ .ai_baseurl }}/v1",
       "apiKey": "{{ .ai_apikey }}",
-      "api": "openai-completions",
+      "api": "openai-responses",
       "models": [
+        {
+          "id": "deepseek-v4-flash-vision-exp",
+          "name": "DeepSeek V4 Flash Vision Exp",
+          "reasoning": true,
+          "input": [
+            "text",
+            "image"
+          ],
+          "thinkingLevelMap": {
+            "minimal": null,
+            "low": "low",
+            "medium": null,
+            "high": "high",
+            "max": "max"
+          },
+          "contextWindow": 632120,
+          "maxTokens": 384000,
+          "cost": {
+            "input": 0.14,
+            "output": 0.28,
+            "cacheRead": 0.0028,
+            "cacheWrite": 0
+          }
+        },
         {
           "id": "deepseek-v4-flash",
           "name": "DeepSeek V4 Flash",
@@ -310,17 +334,11 @@
             "output": 0.28,
             "cacheRead": 0.0028,
             "cacheWrite": 0
-          },
-          "compat": {
-            "supportsDeveloperRole": false,
-            "requiresReasoningContentOnAssistantMessages": true,
-            "thinkingFormat": "deepseek"
           }
         },
         {
           "id": "deepseek-v4-pro",
           "name": "DeepSeek V4 Pro",
-          "api": "openai-responses",
           "reasoning": true,
           "thinkingLevelMap": {
             "minimal": null,
@@ -334,9 +352,9 @@
           "contextWindow": 632120,
           "maxTokens": 384000,
           "cost": {
-            "input": 1.74,
-            "output": 3.48,
-            "cacheRead": 0.0145,
+            "input": 0.435,
+            "output": 0.87,
+            "cacheRead": 0.003625,
             "cacheWrite": 0
           }
         }
