@@ -301,15 +301,6 @@ rule-providers:
     behavior: domain
     format: mrs
 
-  ip-cn:
-    type: http
-    path: rules/bgp-cn.txt
-    url: https://ghproxy.net/https://raw.githubusercontent.com/PaPerseller/chn-iplist/master/chnroute.txt
-    interval: 43200
-    proxy: DIRECT
-    behavior: ipcidr
-    format: text
-
 rules:
   # domain规则
   # 国外
@@ -321,7 +312,6 @@ rules:
   # ip规则
   - GEOIP,private,DIRECT
   # 国内
-  - RULE-SET,ip-cn,DIRECT
   - GEOIP,CN,DIRECT
   # 国外
   - MATCH,mainproxy
