@@ -330,7 +330,7 @@
     "深度求索": {
       "baseUrl": "{{ .ai_baseurl }}/v1",
       "apiKey": "{{ .ai_apikey }}",
-      "api": "openai-responses",
+      "api": "openai-completions",
       "models": [
         {
           "id": "deepseek-v4-flash-vision-exp",
@@ -354,6 +354,11 @@
             "output": 0.28,
             "cacheRead": 0.0028,
             "cacheWrite": 0
+          },
+          "compat": {
+            "supportsDeveloperRole": false,
+            "requiresReasoningContentOnAssistantMessages": true,
+            "thinkingFormat": "deepseek"
           }
         },
         {
@@ -376,6 +381,11 @@
             "output": 0.28,
             "cacheRead": 0.0028,
             "cacheWrite": 0
+          },
+          "compat": {
+            "supportsDeveloperRole": false,
+            "requiresReasoningContentOnAssistantMessages": true,
+            "thinkingFormat": "deepseek"
           }
         },
         {
@@ -398,6 +408,11 @@
             "output": 0.87,
             "cacheRead": 0.003625,
             "cacheWrite": 0
+          },
+          "compat": {
+            "supportsDeveloperRole": false,
+            "requiresReasoningContentOnAssistantMessages": true,
+            "thinkingFormat": "deepseek"
           }
         }
       ]

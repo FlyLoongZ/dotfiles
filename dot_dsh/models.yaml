@@ -130,8 +130,12 @@ llm-pi-ai:
 
     深度求索:
       apiKeyEnv: AI_APIKEY
-      api: openai-responses
+      api: openai-completions
       baseURL: {{ .ai_baseurl }}/v1
+      compat:
+        requiresReasoningContentOnAssistantMessages: true
+        supportsDeveloperRole: false
+        thinkingFormat: deepseek
       reasoning: max
       models:
         - id: deepseek-v4-flash-vision-exp
