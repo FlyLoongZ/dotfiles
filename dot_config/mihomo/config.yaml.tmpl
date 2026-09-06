@@ -146,21 +146,6 @@ xhttp_opt: &xhttp_opt
     h-keep-alive-period: 0
 
 proxies:
-  - name: vless
-    type: vless
-    server: {{ .reality_server }}
-    port: 443
-    udp: true
-    uuid: {{ .reality_uuid }}
-    flow: xtls-rprx-vision
-    packet-encoding: xudp
-    tls: true
-    servername: {{ .reality_sni }}
-    client-fingerprint: chrome
-    reality-opts:
-      public-key: {{ .reality_publicKey }}
-      support-x25519mlkem768: true
-
   - name: xhttp
     <<: *xhttp_proxies
     server: {{ .xhttp_server }}
@@ -214,7 +199,33 @@ proxies:
         server: {{ .xhttp_server2 }}
         servername: {{ .xhttp_sni4 }}
 
-  - name: reality-up+xhttp-down
+  - name: reality
+    type: vless
+    server: {{ .reality_server }}
+    port: 443
+    udp: true
+    uuid: {{ .reality_uuid }}
+    flow: xtls-rprx-vision
+    packet-encoding: xudp
+    tls: true
+    servername: {{ .reality_sni }}
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: {{ .reality_publicKey }}
+      support-x25519mlkem768: true
+
+  - name: reality-one
+    <<: *xhttp_proxies
+    server: {{ .reality_server }}
+    servername: {{ .reality_sni }}
+    reality-opts:
+      public-key: {{ .reality_publicKey }}
+      support-x25519mlkem768: true
+    xhttp-opts:
+      <<: *xhttp_opt
+      mode: stream-one
+
+  - name: reality-xhttp
     <<: *xhttp_proxies
     server: {{ .reality_server }}
     servername: {{ .reality_sni }}
@@ -239,8 +250,9 @@ proxy-groups:
       - xhttp-one
       - xhttp-fastly
       - xhttp2
-      - reality-up+xhttp-down
-      - vless
+      - reality
+      - reality-one
+      - reality-xhttp
       - 美国
       - 日本
       - 新加坡
