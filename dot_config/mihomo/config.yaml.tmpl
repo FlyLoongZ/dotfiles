@@ -153,8 +153,32 @@ proxies:
     xhttp-opts:
       <<: *xhttp_opt
       download-settings:
-        server: {{ .xhttp_server2 }}
-        servername: {{ .xhttp_sni }}
+      server: {{ .xhttp_server2 }}
+      servername: {{ .xhttp_sni }}
+  
+  - name: xhttp-a
+    <<: *xhttp_proxies
+    server: {{ .xhttp_server2 }}
+    servername: {{ .xhttp_sni2 }}
+    xhttp-opts:
+      <<: *xhttp_opt
+      download-settings:
+        server: {{ .xhttp_snia }}
+        servername: {{ .xhttp_snia }}
+        ech-opts:
+          enable: false
+
+  - name: xhttp-f
+    <<: *xhttp_proxies
+    server: {{ .xhttp_server2 }}
+    servername: {{ .xhttp_sni2 }}
+    xhttp-opts:
+      <<: *xhttp_opt
+      download-settings:
+        server: {{ .xhttp_snif }}
+        servername: {{ .xhttp_snif }}
+        ech-opts:
+          enable: false
 
   - name: xhttp-h3
     <<: *xhttp_proxies
@@ -168,6 +192,32 @@ proxies:
         server: {{ .xhttp_server2 }}
         servername: {{ .xhttp_sni }}
 
+  - name: xhttp-h3-a
+    <<: *xhttp_proxies
+    server: {{ .xhttp_server2 }}
+    servername: {{ .xhttp_sni2 }}
+    alpn: [h3]
+    xhttp-opts:
+      <<: *xhttp_opt
+      download-settings:
+        server: {{ .xhttp_snia }}
+        servername: {{ .xhttp_snia }}
+        ech-opts:
+          enable: false
+
+  - name: xhttp-h3-f
+    <<: *xhttp_proxies
+    server: {{ .xhttp_server2 }}
+    servername: {{ .xhttp_sni2 }}
+    alpn: [h3]
+    xhttp-opts:
+      <<: *xhttp_opt
+      download-settings:
+        server: {{ .xhttp_snif }}
+        servername: {{ .xhttp_snif }}
+        ech-opts:
+          enable: false
+
   - name: xhttp-one
     <<: *xhttp_proxies
     server: {{ .xhttp_server }}
@@ -176,18 +226,15 @@ proxies:
       <<: *xhttp_opt
       mode: stream-one
 
-  - name: xhttp-fastly
+  - name: xhttp-one-a
     <<: *xhttp_proxies
-    server: {{ .xhttp_server }}
-    servername: {{ .xhttp_sni2 }}
+    server: {{ .xhttp_snia }}
+    servername: {{ .xhttp_snia }}
+    ech-opts:
+      enable: false
     xhttp-opts:
       <<: *xhttp_opt
-      mode: stream-up
-      download-settings:
-        server: {{ .xhttp_fastly_server }}
-        servername: {{ .xhttp_fastly_server }}
-        ech-opts:
-          enable: false
+      mode: stream-one
 
   - name: xhttp2
     <<: *xhttp_proxies
@@ -246,9 +293,13 @@ proxy-groups:
     type: select
     proxies:
       - xhttp
+      - xhttp-a
+      - xhttp-f
       - xhttp-h3
+      - xhttp-h3-a
+      - xhttp-h3-f
       - xhttp-one
-      - xhttp-fastly
+      - xhttp-one-a
       - xhttp2
       - reality
       - reality-one
