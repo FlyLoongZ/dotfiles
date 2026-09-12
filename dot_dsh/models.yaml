@@ -136,7 +136,7 @@ llm-pi-ai:
         requiresReasoningContentOnAssistantMessages: true
         supportsDeveloperRole: false
         thinkingFormat: deepseek
-      reasoning: max
+      reasoning: high
       models:
         - id: deepseek-flash
           name: DeepSeek V4.1 Flash
