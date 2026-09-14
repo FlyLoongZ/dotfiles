@@ -12,9 +12,7 @@
     "readAccess": "policy"
   },
   "filesystem": {
-    "denyRead": [
-      "/home"
-    ],
+    "denyRead": [],
     "allowRead": [
       ".",
       "/dev/null",
@@ -26,9 +24,8 @@
       "~/.config/go",
       "~/.local/share/go",
       "~/.local/share/chrome-devtools-mcp",
-      "~/.pi/agent",
-      "~/.config/pi",
-      "~/.dsh",
+      "~/.pi/agent/skills",
+      "~/.pi/agent/npm",
       "~/Documents/dev/git-source/vision",
       "~/.npmrc",
       "~/.npm",
@@ -45,8 +42,6 @@
       "~/.config/go",
       "~/.local/share/go",
       "~/.local/share/chrome-devtools-mcp",
-      "~/.pi/agent",
-      "~/.config/pi",
       "~/.npmrc",
       "~/.npm",
       "~/.local/share/pnpm",
