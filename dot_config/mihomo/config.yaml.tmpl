@@ -180,6 +180,20 @@ proxies:
         ech-opts:
           enable: false
 
+  - name: a-xhttp
+    <<: *xhttp_proxies
+    server: {{ .xhttp_snia }}
+    servername: {{ .xhttp_snia }}
+    ech-opts:
+      enable: false
+    xhttp-opts:
+      <<: *xhttp_opt
+      download-settings:
+        server: {{ .xhttp_server2 }}
+        servername: {{ .xhttp_sni2 }}
+        ech-opts:
+          enable: true
+
   - name: xhttp-h3
     <<: *xhttp_proxies
     server: {{ .xhttp_server }}
@@ -187,7 +201,6 @@ proxies:
     alpn: [h3]
     xhttp-opts:
       <<: *xhttp_opt
-      mode: auto
       download-settings:
         server: {{ .xhttp_server2 }}
         servername: {{ .xhttp_sni }}
@@ -217,6 +230,21 @@ proxies:
         servername: {{ .xhttp_snif }}
         ech-opts:
           enable: false
+
+  - name: a-xhttp-h3
+    <<: *xhttp_proxies
+    server: {{ .xhttp_snia }}
+    servername: {{ .xhttp_snia }}
+    alpn: [h3]
+    ech-opts:
+      enable: false
+    xhttp-opts:
+      <<: *xhttp_opt
+      download-settings:
+        server: {{ .xhttp_server2 }}
+        servername: {{ .xhttp_sni }}
+        ech-opts:
+          enable: true
 
   - name: xhttp-one
     <<: *xhttp_proxies
@@ -295,9 +323,11 @@ proxy-groups:
       - xhttp
       - xhttp-a
       - xhttp-f
+      - a-xhttp
       - xhttp-h3
       - xhttp-h3-a
       - xhttp-h3-f
+      - a-xhttp-h3
       - xhttp-one
       - xhttp-one-a
       - xhttp2
