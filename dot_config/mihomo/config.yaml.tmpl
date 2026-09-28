@@ -168,6 +168,19 @@ proxies:
         ech-opts:
           enable: false
 
+  - name: xhttp-ap
+    <<: *xhttp_proxies
+    server: {{ .xhttp_sniap2 }}
+    servername: {{ .xhttp_sniap2 }}
+    uuid: {{ .xhttp_ap_uuid }}
+    xhttp-opts:
+      <<: *xhttp_opt
+      download-settings:
+        server: {{ .xhttp_sniap }}
+        servername: {{ .xhttp_sniap }}
+        ech-opts:
+          enable: false
+
   - name: xhttp-f
     <<: *xhttp_proxies
     server: {{ .xhttp_server2 }}
@@ -215,6 +228,20 @@ proxies:
       download-settings:
         server: {{ .xhttp_snia }}
         servername: {{ .xhttp_snia }}
+        ech-opts:
+          enable: false
+
+  - name: xhttp-h3-ap
+    <<: *xhttp_proxies
+    server: {{ .xhttp_sniap2 }}
+    servername: {{ .xhttp_sniap2 }}
+    uuid: {{ .xhttp_ap_uuid }}
+    alpn: [h3]
+    xhttp-opts:
+      <<: *xhttp_opt
+      download-settings:
+        server: {{ .xhttp_sniap }}
+        servername: {{ .xhttp_sniap }}
         ech-opts:
           enable: false
 
@@ -289,6 +316,21 @@ proxies:
       public-key: {{ .reality_publicKey }}
       support-x25519mlkem768: true
 
+  - name: reality-ap
+    type: vless
+    server: {{ .reality_ap_server }}
+    port: 443
+    udp: true
+    uuid: {{ .reality_ap_uuid }}
+    flow: xtls-rprx-vision
+    packet-encoding: xudp
+    tls: true
+    servername: {{ .reality_ap_sni }}
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: {{ .reality_publicKey }}
+      support-x25519mlkem768: true
+
   - name: reality-one
     <<: *xhttp_proxies
     server: {{ .reality_server }}
@@ -315,6 +357,22 @@ proxies:
         reality-opts:
           public-key: ""
 
+  - name: reality-xhttp-ap
+    <<: *xhttp_proxies
+    server: {{ .reality_ap_server }}
+    servername: {{ .reality_ap_sni }}
+    uuid: {{ .xhttp_ap_uuid }}
+    reality-opts:
+      public-key: {{ .reality_publicKey }}
+      support-x25519mlkem768: true
+    xhttp-opts:
+      <<: *xhttp_opt
+      download-settings:
+        server: {{ .xhttp_sniap }}
+        servername: {{ .xhttp_sniap }}
+        reality-opts:
+          public-key: ""
+
 # 代理组
 proxy-groups:
   - name: mainproxy
@@ -322,18 +380,22 @@ proxy-groups:
     proxies:
       - xhttp
       - xhttp-a
+      - xhttp-ap
       - xhttp-f
       - a-xhttp
       - xhttp-h3
       - xhttp-h3-a
+      - xhttp-h3-ap
       - xhttp-h3-f
       - a-xhttp-h3
       - xhttp-one
       - xhttp-one-a
       - xhttp2
       - reality
+      - reality-ap
       - reality-one
       - reality-xhttp
+      - reality-xhttp-ap
       - 美国
       - 日本
       - 新加坡
