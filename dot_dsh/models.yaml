@@ -202,30 +202,3 @@ llm-pi-ai:
             low: low
             high: high
             max: max
-
-    智谱:
-      apiKeyEnv: AI_APIKEY
-      api: openai-completions
-      baseURL: {{ .ai_baseurl }}/v1
-      reasoning: max
-      compat:
-        supportsDeveloperRole: false
-        thinkingFormat: zai
-      models:
-        - id: glm-5.3
-          name: GLM 5.3
-          contextWindow: 632120 #100000
-          maxTokens: 131072
-          reasoningEfforts:
-            low: low
-            high: high
-            max: max
-        - id: glm-5.3-flash
-          name: GLM-5.3-Flash
-          contextWindow: 632120 #100000
-          maxTokens: 131072
-          input: [text, image]
-          reasoningEfforts:
-            low: low
-            high: high
-            max: max
