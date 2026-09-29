@@ -181,6 +181,19 @@ proxies:
         ech-opts:
           enable: false
 
+  - name: xhttp-ap-f
+    <<: *xhttp_proxies
+    server: {{ .xhttp_sniapf }}
+    servername: {{ .xhttp_sniapf }}
+    uuid: {{ .xhttp_ap_uuid }}
+    ech-opts:
+      enable: false
+    xhttp-opts:
+      <<: *xhttp_opt
+      download-settings:
+        server: {{ .xhttp_sniap }}
+        servername: {{ .xhttp_sniap }}
+
   - name: xhttp-f
     <<: *xhttp_proxies
     server: {{ .xhttp_server2 }}
@@ -272,6 +285,22 @@ proxies:
         servername: {{ .xhttp_sni }}
         ech-opts:
           enable: true
+
+  - name: f-xhttp-h3-ap
+    <<: *xhttp_proxies
+    server: {{ .xhttp_sniapf }}
+    servername: {{ .xhttp_sniapf }}
+    uuid: {{ .xhttp_ap_uuid }}
+    alpn: [h3]
+    ech-opts:
+      enable: false
+    xhttp-opts:
+      <<: *xhttp_opt
+      mode: packet-up
+      download-settings:
+        mode: stream-up
+        server: {{ .xhttp_sniap }}
+        servername: {{ .xhttp_sniap }} 
 
   - name: xhttp-one
     <<: *xhttp_proxies
@@ -370,6 +399,8 @@ proxies:
       download-settings:
         server: {{ .xhttp_sniap }}
         servername: {{ .xhttp_sniap }}
+        ech-opts:
+          enable: false
         reality-opts:
           public-key: ""
 
@@ -381,6 +412,7 @@ proxy-groups:
       - xhttp
       - xhttp-a
       - xhttp-ap
+      - xhttp-ap-f
       - xhttp-f
       - a-xhttp
       - xhttp-h3
@@ -388,6 +420,7 @@ proxy-groups:
       - xhttp-h3-ap
       - xhttp-h3-f
       - a-xhttp-h3
+      - f-xhttp-h3-ap
       - xhttp-one
       - xhttp-one-a
       - xhttp2
