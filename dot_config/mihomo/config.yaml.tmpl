@@ -1,7 +1,5 @@
 # 是否允许局域网
 allow-lan: false
-# 绑定地址
-bind-address: 0.0.0.0
 # 混合端口
 mixed-port: 57878
 
@@ -66,14 +64,12 @@ dns:
 
 tun:
   enable: false
-  stack: system
   auto-route: true
   auto-redirect: true
   auto-detect-interface: true
   include-uid: [1000]
   dns-hijack:
     - any:53
-    - tcp://any:53
   route-exclude-address:
     - 10.0.0.0/8
     - 172.16.0.0/12
@@ -107,7 +103,7 @@ sniffer:
     - 169.254.0.0/16
     - 127.0.0.0/8
     - fc00::/7
-    - fe80::/7
+    - fe80::/10
     - ::1/128
 
 # 代理集合
@@ -116,7 +112,6 @@ proxy-providers:
     type: http
     url: {{ .daili_proxy_url }}
     path: proxy-providers/daili.yaml
-    interval: 0
 
 xhttp_proxies: &xhttp_proxies
   type: vless
@@ -153,8 +148,8 @@ proxies:
     xhttp-opts:
       <<: *xhttp_opt
       download-settings:
-      server: {{ .xhttp_server2 }}
-      servername: {{ .xhttp_sni }}
+        server: {{ .xhttp_server2 }}
+        servername: {{ .xhttp_sni }}
   
   - name: xhttp-a
     <<: *xhttp_proxies
@@ -296,9 +291,8 @@ proxies:
       enable: false
     xhttp-opts:
       <<: *xhttp_opt
-      mode: packet-up
+      mode: auto
       download-settings:
-        mode: stream-up
         server: {{ .xhttp_sniap }}
         servername: {{ .xhttp_sniap }} 
 
@@ -448,7 +442,7 @@ proxy-groups:
     type: select
     filter: "(?i)日本|jp|japan"
     use:
-     - daili
+      - daili
 
   - name: 新加坡
     type: select
@@ -477,7 +471,7 @@ proxy-groups:
   - name: 全部节点
     type: select
     use:
-     - daili
+      - daili
 
 rule-providers:
   icp:
