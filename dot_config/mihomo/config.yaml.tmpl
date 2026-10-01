@@ -434,37 +434,37 @@ proxy-groups:
 
   - name: 美国
     type: select
-    filter: "(?i)美国|us|unitedstates|united states"
+    filter: '(?i)(?:🇺🇸|usa|united ?states|美国|(?<![a-z])us(?![a-z]))'
     use:
       - daili
 
   - name: 日本
     type: select
-    filter: "(?i)日本|jp|japan"
+    filter: '(?i)(?:🇯🇵|japan|(?<![a-z])jp(?![a-z])|日本)'
     use:
       - daili
 
   - name: 新加坡
     type: select
-    filter: "(?i)(新加坡|sg|singapore)"
+    filter: '(?i)(?:🇸🇬|singapore|(?<![a-z])sg(?![a-z])|新加坡)'
     use:
       - daili
 
   - name: 香港
     type: select
-    filter: "(?i)香港|hk|hongkong|hong kong"
+    filter: '(?i)(?:🇭🇰|hong ?kong|(?<![a-z])hk(?![a-z])|香港)'
     use:
       - daili
 
   - name: 台湾
     type: select
-    filter: "(?i)台湾|tw|taiwan"
+    filter: '(?i)(?:🇹🇼|taiwan|(?<![a-z])tw(?![a-z])|台湾)'
     use:
       - daili
 
   - name: 其它地区
     type: select
-    filter: "(?i)^(?!.*(?:🇭🇰|🇯🇵|🇺🇸|🇸🇬|🇨🇳|香港|hk|hongkong|台湾|tw|taiwan|日本|jp|japan|新加坡|sg|singapore|美国|us|unitedstates)).*"
+    exclude-filter: '(?i)(?:🇺🇸|usa|united ?states|unitedstates|美国|(?<![a-z])us(?![a-z]))`(?i)(?:🇯🇵|japan|(?<![a-z])jp(?![a-z])|日本)`(?i)(?:🇸🇬|singapore|(?<![a-z])sg(?![a-z])|新加坡)`(?i)(?:🇭🇰|hong ?kong|(?<![a-z])hk(?![a-z])|香港)`(?i)(?:<RG_EMOJI>|<RG_EN>|(?<![a-z])<RGCODE>(?![a-z])|<RG_CN>)'
     use:
       - daili
 
