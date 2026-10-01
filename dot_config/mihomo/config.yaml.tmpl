@@ -403,26 +403,10 @@ proxy-groups:
   - name: mainproxy
     type: select
     proxies:
-      - xhttp
-      - xhttp-a
-      - xhttp-ap
-      - xhttp-ap-f
-      - xhttp-f
-      - a-xhttp
-      - xhttp-h3
-      - xhttp-h3-a
-      - xhttp-h3-ap
-      - xhttp-h3-f
-      - a-xhttp-h3
-      - f-xhttp-h3-ap
-      - xhttp-one
-      - xhttp-one-a
-      - xhttp2
-      - reality
-      - reality-ap
-      - reality-one
-      - reality-xhttp
-      - reality-xhttp-ap
+      - stream-up
+      - stream-one
+      - quic
+      - tcp
       - 美国
       - 日本
       - 新加坡
@@ -431,6 +415,42 @@ proxy-groups:
       - 其它地区
       - 全部节点
       - DIRECT
+
+  - name: stream-up
+    type: select
+    proxies:
+      - xhttp
+      - xhttp-a
+      - xhttp-ap
+      - xhttp-ap-f
+      - xhttp-f
+      - xhttp2
+      - a-xhttp
+      - reality-xhttp
+      - reality-xhttp-ap
+  
+  - name: stream-one
+    type: select
+    proxies:
+      - xhttp-one
+      - xhttp-one-a
+      - reality-one
+
+  - name: quic
+    type: select
+    proxies:
+      - xhttp-h3
+      - xhttp-h3-a
+      - xhttp-h3-ap
+      - xhttp-h3-f
+      - a-xhttp-h3
+      - f-xhttp-h3-ap
+
+  - name: tcp
+    type: select
+    proxies:
+      - reality
+      - reality-ap
 
   - name: 美国
     type: select
