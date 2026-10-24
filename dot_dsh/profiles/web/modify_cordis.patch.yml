@@ -4,7 +4,6 @@ import sys
 import subprocess
 import yaml
 
-# 1. 获取模型模板路径并渲染
 tmpl_path = os.path.join(
     os.environ.get("CHEZMOI_SOURCE_DIR", ""), 
     "dot_dsh/models.yaml"
@@ -17,14 +16,21 @@ with open(tmpl_path, "rb") as f:
     ).decode("utf-8")
 fixed = yaml.safe_load(rendered) or {}
 
-# 2. 读取本地现有的整个配置文件（为空则初始化为 {}）
-current = yaml.safe_load(sys.stdin.read()) or {}
-if not isinstance(current, dict):
-    current = {}
+current = yaml.safe_load(sys.stdin.read()) or []
+if not isinstance(current, list):
+    current = []
 
-# 3. 直接整块替换 llm-pi-ai 节点
-if "llm-pi-ai" in fixed:
-    current["llm-pi-ai"] = fixed["llm-pi-ai"]
+entry = next(
+    (e for e in current if isinstance(e, dict) and e.get("id") == "llm-pi-ai"),
+    None,
+)
+if entry is None:
+    entry = {
+        "id": "llm-pi-ai",
+        "name": "@deepseek-ai/dsh-llm-pi-ai",
+        "config": {},
+    }
+    current.append(entry)
+entry.setdefault("config", {})["providers"] = fixed
 
-# 4. 输出（保留除 llm-pi-ai 之外的其他所有字段和原本顺序）
 yaml.dump(current, sys.stdout, sort_keys=False, allow_unicode=True)
