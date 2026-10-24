@@ -65,15 +65,47 @@
       "api": "google-generative-ai",
       "models": [
         {
-          "id": "gemini-3.7-flash",
-          "name": "Gemini 3.7 Flash",
+          "id": "gemini-4-argon",
+          "name": "Gemini 4 Argon",
           "reasoning": true,
           "input": [
             "text",
             "image"
           ],
           "thinkingLevelMap": {
-            "off": null
+            "off": null,
+            "minimal": null,
+            "low": "low",
+            "medium": "medium",
+            "high": "high",
+            "xhigh": null,
+            "max": null
+          },
+          "contextWindow": 662820,
+          "maxTokens": 32768,
+          "cost": {
+            "input": 2,
+            "output": 10,
+            "cacheRead": 0.1,
+            "cacheWrite": 0
+          }
+        },
+        {
+          "id": "gemini-3.8-flash",
+          "name": "Gemini 3.8 Flash",
+          "reasoning": true,
+          "input": [
+            "text",
+            "image"
+          ],
+          "thinkingLevelMap": {
+            "off": null,
+            "minimal": null,
+            "low": "low",
+            "medium": "medium",
+            "high": "high",
+            "xhigh": null,
+            "max": null
           },
           "contextWindow": 662820,
           "maxTokens": 65536,
