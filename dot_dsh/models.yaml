@@ -29,8 +29,17 @@ Google:
   baseURL: {{ .ai_baseurl }}/v1
   reasoning: high
   models:
-    - id: gemini-3.7-flash
-      name: Gemini 3.7 Flash
+    - id: gemini-4-argon
+      name: Gemini 4 Argon
+      contextWindow: 662826 #1048567
+      maxTokens: 32768
+      input: [text, image]
+      reasoningEfforts:
+        low: low
+        medium: medium
+        high: high
+    - id: gemini-3.8-flash
+      name: Gemini 3.8 Flash
       contextWindow: 662826 #1048567
       maxTokens: 65536
       input: [text, image]
@@ -58,8 +67,8 @@ OpenAI:
         high: high
         xhigh: xhigh
         max: max
-    - id: gpt-5.6-sol
-      name: GPT 5.6 Sol
+    - id: gpt-6.1-sol
+      name: GPT 6.1 Sol
       contextWindow: 632120 #1000000
       maxTokens: 128000
       input: [text, image]
@@ -68,8 +77,8 @@ OpenAI:
         high: high
         xhigh: xhigh
         max: max
-    - id: gpt-5.6-luna
-      name: GPT 5.6 Luna
+    - id: gpt-6-luna
+      name: GPT 6 Luna
       contextWindow: 632120 #1000000
       maxTokens: 128000
       input: [text, image]
