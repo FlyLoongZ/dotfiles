@@ -505,15 +505,17 @@ rule-providers:
 
 rules:
   # domain规则
-  # 国外
-  - GEOSITE,geolocation-!cn,mainproxy
-  # 国内
+  - GEOSITE,github,mainproxy
+  # 直连
+  - GEOSITE,microsoft,DIRECT
   - GEOSITE,private,DIRECT
   - RULE-SET,icp,DIRECT
+  # 代理
+  - GEOSITE,geolocation-!cn,mainproxy
 
   # ip规则
   - GEOIP,private,DIRECT
-  # 国内
+  # 直连
   - GEOIP,CN,DIRECT
-  # 国外
+  # 代理
   - MATCH,mainproxy
