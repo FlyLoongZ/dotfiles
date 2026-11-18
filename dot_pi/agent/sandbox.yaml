@@ -1,0 +1,29 @@
+enabled: true
+bwrapPath: /usr/bin/bwrap
+readPaths:
+  - ~/Android
+  - ~/.config/git
+  - ~/.local/bin
+  - ~/.local/share/npm-global
+writePaths:
+  - ~/.cache
+  - ~/.local/share/chrome-devtools-mcp
+
+  - ~/.android
+  - ~/.gradle
+  - ~/.local/share/kotlin
+
+  - ~/.cargo
+  - ~/.rustup
+  - ~/.local/share/cargo
+
+  - ~/.config/go
+  - ~/.local/share/go
+
+  - ~/.npmrc
+  - ~/.npm
+  - ~/.local/share/pnpm
+  - ~/.local/state/pnpm
+network: true
+sharedTmp: true
+protectedEnv: []
